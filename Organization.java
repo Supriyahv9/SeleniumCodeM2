@@ -1,6 +1,7 @@
 package Vtigercrm;
 
 import java.io.IOException;
+
 import java.time.Duration;
 
 import org.openqa.selenium.By;
@@ -9,13 +10,17 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import CommonUtils.ExcelUtil;
 import CommonUtils.JavaUtil;
+import CommonUtils.ListenerImplementation;
 import CommonUtils.PropertyFileUtil;
 import CommonUtils.WebDriverUtil;
 
+
+@Listeners(ListenerImplementation.class)
 public class Organization {
 
 	PropertyFileUtil putil = new PropertyFileUtil();
