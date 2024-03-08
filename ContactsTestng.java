@@ -2,44 +2,26 @@ package Vtigercrm;
 
 import java.io.IOException;
 
-import java.util.Set;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+import CommonUtils.BaseClass;
 import CommonUtils.ExcelUtil;
-import CommonUtils.ListenerImplementation;
 import CommonUtils.PropertyFileUtil;
 import CommonUtils.WebDriverUtil;
 
-@Listeners(ListenerImplementation.class)
-public class Contacts {
-	
+public class ContactsTestng extends BaseClass {
 	WebDriverUtil wutil = new WebDriverUtil();
 	PropertyFileUtil putil = new PropertyFileUtil();
 	ExcelUtil eutil = new ExcelUtil();
 	
-	
 	@Test
 	public void ContactsTest() throws IOException, InterruptedException {
 		
-		//To Launch empty browser
-		WebDriver driver = new ChromeDriver();
-		//To maximize the browser window
-		wutil.maximize(driver);
-		//To apply implicit wait for findelement()
-		wutil.implicitwait(driver);
-		
-		//To read data from Property File
-		String URL = putil.getDataFromPropertyFile("Url");
-		String USERNAME = putil.getDataFromPropertyFile("Username");
-		String PASSWORD = putil.getDataFromPropertyFile("Password");
 		
 		//To read data from Excel File
 		String FIRSTNAME = eutil.getDataFromExcel("Contacts", 0, 1);
@@ -47,16 +29,6 @@ public class Contacts {
 		String GROUP = eutil.getDataFromExcel("Contacts", 2, 1);
 		String ORGNAME = eutil.getDataFromExcel("Contacts", 3, 1);
 		
-		
-		
-		
-		//To launch application
-		driver.get(URL);
-		
-		//Login to application
-		driver.findElement(By.name("user_name")).sendKeys(USERNAME);
-		driver.findElement(By.name("user_password")).sendKeys(PASSWORD);
-		driver.findElement(By.id("submitButton")).click();
 		
 		//To Click on Contacts
 		driver.findElement(By.xpath("//a[text()='Contacts']")).click();
@@ -104,21 +76,11 @@ public class Contacts {
 		//Click on Save button
 		driver.findElement(By.xpath("(//input[@name='button'])[1]")).click();
 	
-		Thread.sleep(2000);
-		
-		//To Take screenshot of contact
-		//wutil.screenshot(driver, "Contact");
-		
-		Thread.sleep(2000);
-		
-		//Mousehover on image
-		WebElement image = driver.findElement(By.cssSelector("img[src='themes/softed/images/user.PNG']"));
-		wutil.mousehover(driver, image);
-		
-		//Click on Signout
-		driver.findElement(By.xpath("//a[text()='Sign Out']")).click();
 	
+		
+	
+		
+		
 	
 	}
-
 }
