@@ -61,44 +61,29 @@ public class BasePage {
 		driver.get(URL);
 		
 		//Create Object of LoginPage
-		LoginPage lp = new LoginPage();
-		//To initialize webelements
-		PageFactory.initElements(driver, lp);
 		//Login to the application
-		lp.getUsernametf().sendKeys(USERNAME);
-		lp.getPasswordtf().sendKeys(PASSWORD);
-		lp.getLoginbtn().click();
+		LoginPage lp = new LoginPage(driver);
+		lp.Login(USERNAME, PASSWORD);
 		
-		//Create Object of HomePage
-		HomePage hp = new HomePage();
-		PageFactory.initElements(driver, hp);
-		//Click on Organizations
-		hp.getOrganizations().click();
+	//Create Object of HomePage
+		HomePage hp = new HomePage(driver);
+		hp.Home();
+		
 	
 	//Create Object of OrganizationsPage
-		OrganizationsPage op =new OrganizationsPage();
-		PageFactory.initElements(driver, op);
-		//Click on Create organization..(+)
-		op.getCreateorganization().click();
+		OrganizationsPage op =new OrganizationsPage(driver);
+		op.Organizations();
+		
 		
 	//Create Object of OrganizationInformationPage
-	OrganizationInformationPage oip = new OrganizationInformationPage();
-	PageFactory.initElements(driver, oip);
-	//Enter Organizationname
-	oip.getOrganizationnametf().sendKeys(ORGNAME+jutil.getRandomNumber());
-	//Click on group radio button
-	oip.getGroupbtn().click();	
-	//Select support group in the dropdown	
-	wutil.handledropdown(oip.getDropdown(), GROUP);	
-	//Click on Save button	
-	oip.getSavebtn().click();
+	OrganizationInformationPage oip = new OrganizationInformationPage(driver);
+oip.OrganizationInformation(ORGNAME+jutil.getRandomNumber(), GROUP);
 	
 	Thread.sleep(2000);
 	
-	//Mouse hover on image
-	wutil.mousehover(driver, hp.getImage());
-	//Click on signout button
-	hp.getSignoutbtn().click();
+	hp.Home(driver);
+	
+
 	
 	}
 
